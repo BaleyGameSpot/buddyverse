@@ -69,7 +69,7 @@ if (isset($_REQUEST['CLEAR_CACHE_DATA']) && strtoupper($_REQUEST['CLEAR_CACHE_DA
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
 	<!-- GLOBAL STYLES -->
-	<? include_once('global_files.php'); ?>
+	<?php include_once('global_files.php'); ?>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/new_main.css" />
 	<link rel="stylesheet" href="css/admin_new/dashboard.css">
@@ -94,7 +94,7 @@ if (isset($_REQUEST['CLEAR_CACHE_DATA']) && strtoupper($_REQUEST['CLEAR_CACHE_DA
 
 	<!-- MAIN WRAPPER -->
 	<div id="wrap">
-		<? include_once('header.php'); ?>
+		<?php include_once('header.php'); ?>
 		<!--PAGE CONTENT -->
 		<div id="content" class="content_right">
 			<div class="cintainerinner">
@@ -403,7 +403,7 @@ if (isset($_REQUEST['CLEAR_CACHE_DATA']) && strtoupper($_REQUEST['CLEAR_CACHE_DA
 			</div>
 
 			<!-- HTML -->
-			<? include_once('footer.php'); ?>
+			<?php include_once('footer.php'); ?>
 		</div>
 		<!--END PAGE CONTENT -->
 	</div>
