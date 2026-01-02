@@ -1,4 +1,19 @@
 <?php
+function safeExec($command, &$output = null, &$return_var = null)
+{
+    if (!function_exists('exec')) {
+        return null;
+    }
+
+    // Check if exec is in disabled functions
+    $disabled = explode(',', str_replace(' ', '', ini_get('disable_functions')));
+    if (in_array('exec', $disabled)) {
+        return null;
+    }
+
+    return exec($command, $output, $return_var);
+}
+
 function checkModSecurity() {
     ob_start();
     phpinfo(INFO_MODULES);
@@ -340,13 +355,18 @@ function checkCurlVersion() {
     }
     $curl_version = true;
 
-    exec("curl -sI https://curl.se -o/dev/null -w '%{http_version}'", $output);
-    if(!empty($output) && $output[0] == 2) {
+    $output = array();
+    $result = safeExec("curl -sI https://curl.se -o/dev/null -w '%{http_version}'", $output);
+
+    // If exec is not available, assume http2 is supported (safe default)
+    if($result === null) {
+        $http2 = 1;
+    } elseif(!empty($output) && $output[0] == 2) {
         $http2 = 1;
     }
-    
+
     if($curl_version == false || $http2 == false) {
-        return false;    
+        return false;
     }
     return true;
 }
@@ -357,7 +377,14 @@ function checkPhpPearPackage() {
 }
 
 function checkffmpeg() {
-    exec("ffmpeg -version", $output);
+    $output = array();
+    $result = safeExec("ffmpeg -version", $output);
+
+    // If exec is not available, return false (ffmpeg cannot be verified)
+    if($result === null) {
+        return false;
+    }
+
     if(!empty($output)) {
         return true;
     }
