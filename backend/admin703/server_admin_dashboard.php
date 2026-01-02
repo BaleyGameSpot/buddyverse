@@ -1,12 +1,45 @@
 <?php
-include_once('../common.php');
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+// Log errors to help debug
+ini_set('log_errors', 1);
+ini_set('error_log', '/tmp/php_errors.log');
+
+try {
+    include_once('../common.php');
+} catch (Exception $e) {
+    die("Error including common.php: " . $e->getMessage());
+}
+
+if (!isset($userObj)) {
+    die("Error: userObj is not defined. Check common.php");
+}
+
 if (!$userObj->hasPermission('manage-server-admin-dashboard')) {
     $userObj->redirect();
 }
 
 $script = "server_dashboard";
-$server_info = $DASHBOARD_OBJ->getServerInfo();
-$server_status_info =  $DASHBOARD_OBJ->serverStatusInfo();
+
+// Debug: Check if DASHBOARD_OBJ exists
+if (!isset($DASHBOARD_OBJ)) {
+    die("Error: DASHBOARD_OBJ is not defined. Check common.php");
+}
+
+try {
+    $server_info = $DASHBOARD_OBJ->getServerInfo();
+} catch (Exception $e) {
+    die("Error in getServerInfo(): " . $e->getMessage() . "<br>Trace: " . $e->getTraceAsString());
+}
+
+try {
+    $server_status_info = $DASHBOARD_OBJ->serverStatusInfo();
+} catch (Exception $e) {
+    die("Error in serverStatusInfo(): " . $e->getMessage() . "<br>Trace: " . $e->getTraceAsString());
+}
 if (isset($_REQUEST['GET_SERVER_DATA'])) {
 	$returnArr['action'] = "1";
 	$returnArr['message'] = $server_info;
@@ -23,16 +56,40 @@ if (isset($_REQUEST['GET_SERVER_STATUS_INFO'])) {
 	exit;
 }
 
+// Debug server_info content
+if (!is_array($server_info)) {
+    die("Error: server_info is not an array. Value: " . var_export($server_info, true));
+}
+
 $conn_per = ($server_info['totalconnections'] != 0)
     ? round(($server_info['connections'] / $server_info['totalconnections']) * 100)
     : 0;
-$sys_load_per = sys_getloadavg()[1] * 100;
+
+// Check if sys_getloadavg is available
+if (function_exists('sys_getloadavg')) {
+    $loadavg = sys_getloadavg();
+    $sys_load_per = isset($loadavg[1]) ? $loadavg[1] * 100 : 0;
+} else {
+    $sys_load_per = 0;
+    error_log("Warning: sys_getloadavg() is not available");
+}
+
 $php_process_count = $server_info['php_process_count'] + mt_rand(100, 999);
 $php_process_count = ($server_info['php_process_count'] / $php_process_count) * 100;
 
-$SystemDiagnosticData = $DASHBOARD_OBJ->getSystemDiagnosticData();
+try {
+    $SystemDiagnosticData = $DASHBOARD_OBJ->getSystemDiagnosticData();
+} catch (Exception $e) {
+    die("Error in getSystemDiagnosticData(): " . $e->getMessage() . "<br>Trace: " . $e->getTraceAsString());
+}
 
 $server_working = $server_missing = 0;
+
+// Debug: Check if SystemDiagnosticData is an array
+if (!is_array($SystemDiagnosticData)) {
+    die("Error: SystemDiagnosticData is not an array. Value: " . var_export($SystemDiagnosticData, true));
+}
+
 foreach ($SystemDiagnosticData as $SysData) {
 	if ($SysData['value']) {
 		$server_working++;
