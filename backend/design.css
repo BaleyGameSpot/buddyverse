@@ -1,3 +1,10 @@
+/*
+===========================================
+BUDDYVERSE - ADVANCED DESIGN SYSTEM
+Modern Multi-Service Platform UI
+===========================================
+*/
+
 * {
 	padding: 0;
 	margin: 0;
@@ -5,6 +12,14 @@
 	border: none;
 	list-style-type: none;
 	text-decoration: none;
+	box-sizing: border-box;
+}
+
+/* MODERN SMOOTH SCROLLING */
+html {
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 span#shadowbox {
@@ -30,52 +45,68 @@ span#shadowbox.visible {
 	left:0;
 }*/
 
+/* MODERN NAVIGATION SYSTEM */
 nav {
-	position:relative;
+	position: relative;
 	top: 0;
 	bottom: 0;
-	left:0;
-	right:0;
-	font-family: 'maven_proregular';
-	z-index:999;
-	margin:0 auto;
-	max-width:1560px;
+	left: 0;
+	right: 0;
+	font-family: 'Inter', 'maven_proregular', sans-serif;
+	z-index: 999;
+	margin: 0 auto;
+	max-width: 1560px;
 }
 
 nav button {
-	position:fixed;
-	padding:0;
-	left: 9;
+	position: fixed;
+	padding: 8px;
+	left: 9px;
 	top: 22px;
-	cursor:pointer;
-	transition:ease-in-out .3s;
-	width:20px;
-	height:34px;
-	background:none;
-	overflow:hidden;
-	margin:0 0 0 20px;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	width: 44px;
+	height: 44px;
+	background: rgba(102, 126, 234, 0.1);
+	backdrop-filter: blur(10px);
+	border-radius: 12px;
+	overflow: hidden;
+	margin: 0 0 0 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+nav button:hover {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+	transform: scale(1.05);
+}
+
+nav button:hover section div {
+	background: #ffffff;
 }
 
 nav section {
-	position:relative;
-	padding:0;
-	left:20px;
-	top:10px;
-	cursor:pointer;
-	transition:ease-in-out .3s;
-	width:20px;
-	height:17px;
-	float:left;
-	background:none;
+	position: relative;
+	padding: 0;
+	left: 8px;
+	top: 8px;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	width: 24px;
+	height: 20px;
+	float: left;
+	background: none;
 }
 
 nav section div {
-	background:#fff;
-	width:100%;
-	height:3px;
-	margin:3px 0 0;
-	float:left;
-	transition:ease-in-out .12s;
+	background: #667eea;
+	width: 100%;
+	height: 3px;
+	margin: 4px 0 0;
+	float: left;
+	border-radius: 2px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 nav section div:nth-child(3) {
 	/*margin: -5px 0 0 0;*/
