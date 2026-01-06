@@ -1,0 +1,97 @@
+.countryPhoneSelectWrapper {
+    height: 100%;
+    width: 110px;
+    border-right: 0;
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    direction: ltr;
+    background-image: url(../img/drop_arrow.svg);
+    background-size: 11px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+}
+.countryPhoneSelectWrapper::before{
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 12px;
+    bottom: 0;
+    width: 1px;
+    height: calc(100% - 21px);
+    height: -webkit-calc(100% - 21px);
+    height: -moz-calc(100% - 21px);
+    height: -ms-calc(100% - 21px);
+    height: -o-calc(100% - 21px);
+    background-color: #c1c1c1;
+}
+[dir="rtl"] .countryPhoneSelectWrapper{
+    background-position: calc(100% - 90%) center;
+}
+[dir="rtl"] .countryPhoneSelectWrapper::before {
+        right: auto;
+        left: 0;
+}
+.countryPhoneSelectChoice {
+    position: absolute;
+    top: 14px;
+    left: 6px;
+    height: auto;
+    display: inline-table;
+    width: 93%;
+    border-radius: 5px;
+    font-size: 12px;
+    background: #fff;
+}
+.payment-block-inner .countryPhoneSelectChoice {
+    top: 10px;
+    background-color: transparent;
+}
+.accessAid {
+    position: absolute!important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    padding: 0!important;
+    border: 0!important;
+    height: 1px!important;
+    width: 1px!important;
+    overflow: hidden;
+}
+.countryPhoneSelect {
+    position: relative;
+    height: 44px;
+    width: 100px;
+    border: 0;
+    background: 0 0;
+    opacity: 0;
+    z-index: 1;
+    direction: ltr;
+}
+.countryPhoneSelectWrapper .countryCode {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+.countryPhoneSelectWrapper .phoneCode {
+    padding-left: 7px;
+    width: 62%;
+}
+.countryPhoneSelectWrapper .countryCode, .countryPhoneSelectWrapper .phoneCode {
+    display: table-cell;
+    vertical-align: middle;
+    font-size:14px;
+}
+.phoneinput{
+    /* padding-left: 95px !important; */
+    padding-left: 125px;
+    padding-top: 0;
+    width:100% !important;
+    box-sizing: border-box;
+}
+.countryPhoneSelectWrapper .countryCode {
+    background-color: #239707;
+}
