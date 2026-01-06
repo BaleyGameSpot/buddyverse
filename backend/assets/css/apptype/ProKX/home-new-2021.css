@@ -964,21 +964,23 @@ header.fixed.loggedin .navmenu-links .dropdown-content .column a:hover {
     }
 }
 
+/* Premium Select Service Styling */
 .location-area select,
 .location-area .selected_service {
     /* width: 210px; */
     width: 260px;
     font-size: 16px;
-    color: #494949;
+    color: var(--text-dark);
+    font-weight: 600;
     padding: 10px 45px 10px 23px;
     border: none;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.95);
     outline: none;
     vertical-align: top;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 10px 0 0 10px;
     -webkit-border-radius: 10px 0 0 10px;
     -moz-border-radius: 10px 0 0 10px;
@@ -991,6 +993,15 @@ header.fixed.loggedin .navmenu-links .dropdown-content .column a:hover {
     min-height: 74px;
     display: flex;
     align-items: center;
+    transition: var(--transition-base);
+    position: relative;
+    z-index: 2;
+}
+
+.location-area .selected_service:hover,
+.location-area select:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: #667eea;
 }
 
 .location-area .selected_service a {
@@ -1284,6 +1295,7 @@ header.fixed.loggedin .navmenu-links .dropdown-content .column a:hover {
 /********************************/
 .select_service {
     position: relative;
+    z-index: var(--z-dropdown);
 }
 
 .services_part {
@@ -1301,41 +1313,62 @@ header.fixed.loggedin .navmenu-links .dropdown-content .column a:hover {
     margin: 10px 15px;
 }
 
+/* Premium Services Dropdown with Glassmorphism */
 .select_service ul#standard-select {
     position: absolute;
     top: 100%;
     width: 858px;
     display: none;
-    background-color: #fff;
-    border-radius: 10px;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
-    z-index: 2;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 8px 32px 0 rgba(102, 126, 234, 0.2);
+    z-index: var(--z-popover);
     margin-top: 20px;
+    animation: dropdownSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .select_service.active ul#standard-select {
     display: block;
 }
 
+@keyframes dropdownSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Premium Dropdown Header */
 .select_service ul#standard-select .service_head {
     display: flex;
     flex-wrap: wrap;
-    font-size: 14px;
-    color: #000;
+    font-size: 15px;
+    color: var(--text-dark);
     font-family: 'poppins';
-    font-weight: 500;
+    font-weight: 600;
     width: 100%;
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
+    padding: 18px 20px;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.15);
     justify-content: space-between;
     align-items: center;
     margin-top: 0;
-    background-color: #d5fffe;
-    border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    -moz-border-radius: 5px 5px 0 0;
-    -ms-border-radius: 5px 5px 0 0;
-    -o-border-radius: 5px 5px 0 0;
+    background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.08) 0%,
+                rgba(118, 75, 162, 0.05) 100%);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    -webkit-border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    -moz-border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    -ms-border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    -o-border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .selected_service.active~ul#standard-select {
@@ -1354,40 +1387,61 @@ header.fixed.loggedin .navmenu-links .dropdown-content .column a:hover {
     width: 0;
 }
 
+/* Premium Dropdown List Items */
 .select_service ul#standard-select li {
     font-size: 14px;
     display: inline-block;
     width: 25%;
     cursor: pointer;
-    transition: all 0.5s ease 0s;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -ms-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-    border-right: 1px solid #ddd;
-    color: #000;
+    transition: var(--transition-base);
+    -webkit-transition: var(--transition-base);
+    -moz-transition: var(--transition-base);
+    -ms-transition: var(--transition-base);
+    -o-transition: var(--transition-base);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    color: var(--text-dark);
 }
 
 .select_service ul#standard-select li a {
-    padding: 8px 10px;
-    margin: 4.5px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    padding: 12px 14px;
+    margin: 6px;
+    border-radius: var(--radius-md);
+    -webkit-border-radius: var(--radius-md);
+    -moz-border-radius: var(--radius-md);
+    -ms-border-radius: var(--radius-md);
+    -o-border-radius: var(--radius-md);
     display: block;
-    color: #000;
-    transition: all 0.5s ease 0s;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -ms-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition-base);
+    -webkit-transition: var(--transition-base);
+    -moz-transition: var(--transition-base);
+    -ms-transition: var(--transition-base);
+    -o-transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.select_service ul#standard-select li a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-soft);
+    opacity: 0;
+    transition: var(--transition-base);
 }
 
 .select_service ul#standard-select li a:hover {
-    background-color: #ddd;
-    color: #000;
+    background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.1) 0%,
+                rgba(118, 75, 162, 0.08) 100%);
+    color: #667eea;
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.select_service ul#standard-select li a:hover::before {
+    opacity: 1;
 }
 
 /*.select_service ul#standard-select li:hover {
