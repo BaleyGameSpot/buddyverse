@@ -1,18 +1,58 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,500,700);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-body { margin:0px; padding:0px;
-	font-family: 'Raleway', sans-serif;
+/* MODERN ENHANCED MAIN CSS - BUDDYVERSE PLATFORM */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Inter', 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
 }
 
-a:link{text-decoration:none;}
-a:hover{text-decoration:none;}
+a:link {
+	text-decoration: none;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+	text-decoration: none;
+	transform: translateY(-2px);
+}
 
 /*********************************************************/
-/*Important For top hover dropwown*/
+/* MODERN DROPDOWN MENUS WITH GLASSMORPHISM */
 
-#top > .navbar .dropdown-menu > li > a:hover, #top > .navbar .dropdown-menu > li > a:focus {
-background-repeat: repeat-x;
-   background-image: linear-gradient(to bottom, #EEECEC  0%, #E2E2E2  100%) !important;
+#top > .navbar .dropdown-menu {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 16px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+	padding: 12px;
+	animation: dropdownFadeIn 0.3s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+#top > .navbar .dropdown-menu > li > a:hover,
+#top > .navbar .dropdown-menu > li > a:focus {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+	color: #ffffff !important;
+	border-radius: 12px;
+	transform: translateX(5px);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 
